@@ -98,10 +98,13 @@ const icons=["🎁","💰","⭐","🍀","🎉"];
 
 let answer=0;
 let timer=null;
-  function spin(){
+function spin(){
 
-    const icon = icons[Math.floor(Math.random()*icons.length)];
-    slot.textContent = icon;
+    const a = icons[Math.floor(Math.random()*icons.length)];
+    const b = icons[Math.floor(Math.random()*icons.length)];
+    const c = icons[Math.floor(Math.random()*icons.length)];
+
+    slot.textContent = `${a} ${b} ${c}`;
 
 }
 
@@ -116,7 +119,23 @@ start.onclick = ()=>{
 
         clearInterval(timer);
 
-        answer = Math.floor(Math.random()*2);
+const jackpot = ["💰","💰","💰"];
+const miss = ["🍀","⭐","🎁","🍉","🔔"];
+
+if(Math.random()<0.3){
+
+    slot.textContent = jackpot.join(" ");
+
+}else{
+
+    slot.textContent =
+    `${miss[Math.floor(Math.random()*miss.length)]}
+     ${miss[Math.floor(Math.random()*miss.length)]}
+     ${miss[Math.floor(Math.random()*miss.length)]}`;
+
+}
+
+answer=Math.floor(Math.random()*2);
 
         left.style.display="inline-block";
         right.style.display="inline-block";
