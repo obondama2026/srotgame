@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ジャックポットサバイバル</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================
+      タイトル画面
+========================= -->
+<section id="titleScreen" class="screen active">
+
+    <div class="title-box">
+        <h1>🎰</h1>
+        <h1>ジャックポットサバイバル</h1>
+
+        <p class="subTitle">
+            賞金を勝ち取れ！
+        </p>
+
+        <button id="startBtn" class="mainButton">
+            GAME START
+        </button>
+    </div>
+
+</section>
+
+<!-- =========================
+      設定画面
+========================= -->
+<section id="settingScreen" class="screen">
+
+    <h2>プレイヤー設定</h2>
+
+    <div class="card">
+
+        <label>
+            プレイヤー人数
+        </label>
+
+        <select id="playerCount">
+
+            <option value="2">2人</option>
+            <option value="3">3人</option>
+            <option value="4" selected>4人</option>
+            <option value="5">5人</option>
+            <option value="6">6人</option>
+            <option value="7">7人</option>
+            <option value="8">8人</option>
+
+        </select>
+
+    </div>
+
+    <div id="playerInputs" class="card">
+
+        <!-- JavaScriptで生成 -->
+
+    </div>
+
+    <div class="card">
+
+        <h3>賞金一覧</h3>
+
+        <div id="moneyInputs">
+
+            <input type="number" value="10000">
+            <input type="number" value="8000">
+            <input type="number" value="5000">
+            <input type="number" value="3000">
+            <input type="number" value="1000">
+
+        </div>
+
+    </div>
+
+    <button id="settingNextBtn" class="mainButton">
+        ゲーム開始
+    </button>
+
+</section>
+
+<!-- =========================
+      賞金抽選画面
+========================= -->
+
+<section id="slotScreen" class="screen">
+
+    <h2>今回の賞金</h2>
+
+    <div id="slotMachine">
+
+        <div id="slotValue">
+
+            READY
+
+        </div>
+
+    </div>
+
+    <button id="slotStartBtn" class="mainButton">
+
+        抽選スタート
+
+    </button>
+
+</section>
+
+<!-- =========================
+      ゲーム画面
+========================= -->
+
+<section id="gameScreen" class="screen">
+
+    <h2 id="turnPlayer">
+
+        プレイヤー1の番
+
+    </h2>
+
+    <div class="prizeArea">
+
+        今回の賞金
+
+        <div id="currentPrize">
+
+            0円
+
+        </div>
+
+    </div>
+
+    <div id="gameMessage">
+
+        3択に挑戦！
+
+    </div>
+
+    <div id="threeChoiceArea">
+
+        <button class="choiceBtn" data-choice="0">
+            ①
+        </button>
+
+        <button class="choiceBtn" data-choice="1">
+            ②
+        </button>
+
+        <button class="choiceBtn" data-choice="2">
+            ③
+        </button>
+
+    </div>
+
+    <div id="twoChoiceArea" style="display:none;">
+
+        <button class="choiceBtn" data-choice="0">
+            左
+        </button>
+
+        <button class="choiceBtn" data-choice="1">
+            右
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+      ラストチャレンジ画面
+========================= -->
+
+<section id="lastChallengeScreen" class="screen">
+
+    <h1 class="lastTitle">
+        🌟 LAST CHALLENGE 🌟
+    </h1>
+
+    <p class="lastText">
+
+        最後の挑戦！
+
+    </p>
+
+    <div class="lastPrize">
+
+        残り賞金
+
+        <div id="lastPrizeValue">
+
+            0円
+
+        </div>
+
+    </div>
+
+    <div class="bonusBox">
+
+        <p>
+            成功すると
+        </p>
+
+        <h2>
+
+            ボーナス +5,000円
+
+        </h2>
+
+        <p>
+
+            失敗でも +2,000円
+
+        </p>
+
+    </div>
+
+    <div id="lastChallengeMessage">
+
+        3択に挑戦！
+
+    </div>
+
+    <div id="lastThreeChoice">
+
+        <button class="choiceBtn lastChoice" data-choice="0">
+            ①
+        </button>
+
+        <button class="choiceBtn lastChoice" data-choice="1">
+            ②
+        </button>
+
+        <button class="choiceBtn lastChoice" data-choice="2">
+            ③
+        </button>
+
+    </div>
+
+    <div id="lastTwoChoice" style="display:none;">
+
+        <button class="choiceBtn lastChoice" data-choice="0">
+            左
+        </button>
+
+        <button class="choiceBtn lastChoice" data-choice="1">
+            右
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+      結果画面
+========================= -->
+
+<section id="resultScreen" class="screen">
+
+    <h1>
+
+        🎉 ゲーム終了 🎉
+
+    </h1>
+
+    <h2>
+
+        賞金獲得一覧
+
+    </h2>
+
+    <div id="resultList">
+
+        <!-- JavaScriptで表示 -->
+
+    </div>
+
+    <button id="restartBtn" class="mainButton">
+
+        もう一度遊ぶ
+
+    </button>
+
+</section>
+
+<!-- =========================
+      共通演出
+========================= -->
+
+<div id="overlayMessage">
+
+    READY
+
+</div>
+
+<div id="countDown">
+
+    3
+
+</div>
+
+<div id="flashEffect"></div>
+
+<div id="confettiArea"></div>
+
+<!-- =========================
+      共通演出エリア
+========================= -->
+
+<div id="overlay" class="overlay hidden">
+
+    <div id="overlayTitle" class="overlay-title">
+        READY
+    </div>
+
+    <div id="overlaySub" class="overlay-sub">
+    </div>
+
+</div>
+
+<!-- =========================
+      ローディング
+========================= -->
+
+<div id="loadingScreen" class="hidden">
+
+    <div class="loader"></div>
+
+    <p>Loading...</p>
+
+</div>
+
+<!-- =========================
+      音声（Ver.2で使用）
+========================= -->
+
+<audio id="slotSound" preload="auto"></audio>
+
+<audio id="successSound" preload="auto"></audio>
+
+<audio id="missSound" preload="auto"></audio>
+
+<audio id="buttonSound" preload="auto"></audio>
+
+<audio id="jackpotSound" preload="auto"></audio>
+
+<!-- =========================
+      フッター
+========================= -->
+
+<footer>
+
+    <p>
+        Jackpot Survival Ver.1.0
+    </p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
